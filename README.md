@@ -72,7 +72,7 @@ Build and start all services
 docker-compose up --build
 ```
 
-**If you get any errors, make sure to reboot your pc and try again. If it was your first time installing docker, you will ned to reboot for it to function.**
+**If you get any errors, make sure to reboot your pc and try again. If it was your first time installing docker, you will need to reboot for it to function.**
 
 ## Connecting to database
 
