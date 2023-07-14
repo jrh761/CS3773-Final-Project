@@ -45,25 +45,10 @@ Install miniconda
 
 - [How to install miniconda](https://docs.conda.io/en/latest/miniconda.html)
 
-Create conda environment from the environment file
-
-```bash
-conda env create --file environment.yml
-```
-
-If you want a different environment name you can add it with `--name`
-
-```bash
-conda env create --file environment.yml --name <new_environment_name>
-```
-
-_Alternative_ Create conda environment from scratch:
+Create conda environment
 
 ```bash
 conda create -n shopping-project -c conda-forge nodejs
-
-# After env is create, install docker-compose
-pip install docker-compose
 ```
 
 Activate conda environment to use npm
@@ -98,12 +83,6 @@ npm install
 ```
 
 ## Running the project
-
-Build and start all services
-
-```bash
-docker-compose up --build
-```
 
 On your first time setting up this project, you will need to create the initial database table.
 
