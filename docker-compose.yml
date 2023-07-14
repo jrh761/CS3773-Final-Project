@@ -3,6 +3,8 @@ services:
   db:
     image: postgres:13
     restart: always
+    ports:
+      - 5432:5432
     environment:
       POSTGRES_PASSWORD: example
     volumes:
@@ -22,6 +24,13 @@ services:
       - frontend
     depends_on:
       - db
+    command:
+      - /bin/sh
+      - -c
+      - |
+        ./wait-for-it.sh db:5432 --timeout=0 &&
+        npx sequelize-cli db:migrate &&
+        npx nodemon index.js
 
   client:
     build: ./client

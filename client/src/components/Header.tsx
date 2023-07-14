@@ -6,14 +6,14 @@ import ThemeToggler from "./ThemeToggler";
 
 const Header: React.FC = () => {
   return (
-    <Navbar expand="lg" className="bg-body-tertiary">
+    <Navbar expand="lg" className="bg-body-tertiary" style={{ marginBottom: 50 }}>
       <Container>
         <Navbar.Brand href="#home">React-Bootstrap</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
-            <Nav.Link href="#link">Link</Nav.Link>
+            <Nav.Link href="/">Home</Nav.Link>
+            <Nav.Link href="/test-page">Test Page</Nav.Link>
             <NavDropdown title="Dropdown" id="basic-nav-dropdown">
               <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
               <NavDropdown.Item href="#action/3.2">
