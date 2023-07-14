@@ -86,6 +86,17 @@ npm install -g npm@<version-listed> # Example: npm install -g npm@9.8.0
 
 **Note, you will only be able to use npm/node when you conda environment is activated. If you see that npm is not found, you do not have your conda environment activated**
 
+## Install node packages
+
+```bash
+cd client
+npm install
+
+cd ..
+cd server
+npm install
+```
+
 ## Running the project
 
 Build and start all services
@@ -94,7 +105,27 @@ Build and start all services
 docker-compose up --build
 ```
 
-**If you get any errors, make sure to reboot your pc and try again. If it was your first time installing docker, you will need to reboot for it to function.**
+On your first time setting up this project, you will need to create the initial database table.
+
+After all of your images are brought up you will need to go into the database container and create the initial database:
+
+Open a new shell and enter the following command:
+
+```bash
+docker exec -it cs3773-final-project-db-1 psql -U postgres
+```
+
+Create the database:
+
+```sql
+CREATE DATABASE myshop;
+```
+
+After you created the database, you can stop the containers with CTRL+C and rerun:
+
+```bash
+docker-compose up --build
+```
 
 ## Connecting to database
 
@@ -102,18 +133,6 @@ Make sure the docker containers are running:
 
 ```bash
 docker exec -it cs3773-final-project-db-1 psql -U postgres
-```
-
-Connect to the db:
-
-```bash
-psql -U postgres
-```
-
-Create the database:
-
-```sql
-CREATE DATABASE myshop;
 ```
 
 ## Sequelize
