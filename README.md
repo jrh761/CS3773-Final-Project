@@ -2,6 +2,26 @@
 
 ## Setup
 
+### Windows
+
+First you need to install WSL:
+
+Make sure you navigate to "Turn Windows features on or off" and check the following:
+
+- Virtual Machine Platform
+- Windows Hypervisor Platfrom
+- Windows Subsystem for Linux
+
+Then follow this guide:
+
+- [Install WSL](https://learn.microsoft.com/en-us/windows/wsl/install)
+
+Make sure you are running WSL 2
+
+```
+wsl -l -v
+```
+
 ### Install docker
 
 Install docker:
@@ -17,7 +37,9 @@ Install npm:
 
 This shows how to install npm globally, but if you want to keep your dependencies more contained, you can use a `conda` environment with `npm` as a package. This helps keep your development environment clean.
 
-### Alternative: Set up npm in conda environment
+### Alternative: Set up npm in conda environment linux or WSL
+
+#### Linux/Windows
 
 Install miniconda
 
