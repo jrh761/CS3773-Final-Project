@@ -86,9 +86,14 @@ npm install
 
 On your first time setting up this project, you will need to create the initial database table.
 
-After all of your images are brought up you will need to go into the database container and create the initial database:
+After all of your images are brought up you will need to go into the database container and create the initial database.
+Disreguard any errors, we need the database image to be running to create the initial database.
 
-Open a new shell and enter the following command:
+```bash
+docker-compose up --build
+```
+
+Open a new shell and enter the following command, make sure the containr is still running:
 
 ```bash
 docker exec -it cs3773-final-project-db-1 psql -U postgres
