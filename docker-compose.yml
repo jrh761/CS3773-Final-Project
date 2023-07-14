@@ -1,0 +1,53 @@
+version: '3'
+services:
+  db:
+    image: postgres:13
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: example
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+  server:
+    build: ./server
+    restart: always
+    volumes:
+      - ./server:/app
+    ports:
+      - 5000:5000
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - db
+
+  client:
+    build: ./client
+    restart: always
+    volumes:
+      - ./client:/app
+    ports:
+      - 3000:3000
+    networks:
+      - frontend
+    depends_on:
+      - server
+
+  nginx:
+    image: nginx:latest
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+    restart: always
+    ports:
+      - 80:80
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - server
+
+networks:
+  backend:
+  frontend:
