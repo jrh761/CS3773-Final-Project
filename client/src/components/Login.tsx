@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { UserContext } from '../context/UserContext';
-import { Form, Button, Alert, Row, Col } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import ApiService from '../utils/ApiService';
 
@@ -32,7 +32,7 @@ const Login: React.FC = () => {
     <div className="px-5">
       <Form onSubmit={handleSubmit}>
         {error && <Alert variant="danger">{error}</Alert>}
-        <Form.Group controlId="username">
+        <Form.Group className="pb-3" controlId="username">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"

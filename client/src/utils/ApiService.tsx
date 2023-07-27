@@ -37,14 +37,12 @@ class ApiService {
     }
   }
 
-  static async post(path: string, data: any) {
+  static async post(path: string, data: any, isFile = false) {
     try {
       const response = await fetch(this.API_BASE_URL + path, {
         method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(data),
+        headers: isFile ? {} : { 'Content-Type': 'application/json' },
+        body: isFile ? data : JSON.stringify(data),
       });
 
       const responseData = await response.json();
@@ -52,7 +50,7 @@ class ApiService {
       if (!response.ok) {
         return {
           success: false,
-          message: responseData.message || 'An error occurred',
+          message: responseData.error || 'An error occurred',
           data: null,
           status: response.status,
         };

@@ -32,7 +32,7 @@ const Register: React.FC = () => {
     <div className="px-5">
       <Form onSubmit={handleSubmit}>
         {error && <Alert variant="danger">{error}</Alert>}
-        <Form.Group controlId="username">
+        <Form.Group className="pb-3" controlId="username">
           <Form.Label>Username</Form.Label>
           <Form.Control
             type="text"

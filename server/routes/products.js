@@ -2,6 +2,10 @@ const express = require("express");
 const { Product } = require("../models");
 const router = express.Router();
 
+// For image processing
+const multer = require('multer');
+const upload = multer();
+
 router.get("/", async (req, res) => {
   try {
     const products = await Product.findAll();
@@ -24,15 +28,19 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", upload.single('photo'), async (req, res) => {
   try {
-    console.log(req.body);
     const product = await Product.create({
       productName: req.body.productName,
-      price: req.body.price,
+      description: req.body.description,
+      quantity: Number(req.body.quantity),
+      category: req.body.category,
+      price: Number(req.body.price),
+      photo: req.file ? req.file.buffer : null,
     });
     res.status(201).json(product);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err.message });
   }
 });

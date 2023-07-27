@@ -4,7 +4,7 @@ import { Container } from 'react-bootstrap';
 import './custom.scss';
 
 import Home from './pages/HomePage';
-import TestPage from './pages/TestPage';
+import AddProductsPage from './pages/AddProductsPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import Header from './components/Header';
@@ -16,7 +16,7 @@ const App: React.FC = () => {
       <Container>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/test-page" element={<TestPage />} />
+          <Route path="/add-product" element={<AddProductsPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>
