@@ -9,10 +9,10 @@ interface Product {
 
 type Props = {
   products: Product[];
-}
+};
 
 const GetProducts: React.FC<Props> = (props: Props) => {
-  console.log(props.products)
+  console.log(props.products);
   return (
     <Table striped bordered hover>
       <thead>
@@ -23,13 +23,14 @@ const GetProducts: React.FC<Props> = (props: Props) => {
         </tr>
       </thead>
       <tbody>
-        {props.products && props.products.map(product => (
-          <tr key={product.productId}>
-            <td>{product.productId}</td>
-            <td>{product.productName}</td>
-            <td>{product.price}</td>
-          </tr>
-        ))}
+        {props.products &&
+          props.products.map((product) => (
+            <tr key={product.productId}>
+              <td>{product.productId}</td>
+              <td>{product.productName}</td>
+              <td>{product.price}</td>
+            </tr>
+          ))}
       </tbody>
     </Table>
   );

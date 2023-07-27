@@ -1,12 +1,24 @@
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
-import NavDropdown from "react-bootstrap/NavDropdown";
-import ThemeToggler from "./ThemeToggler";
+import { Container, Nav, Navbar, NavDropdown } from 'react-bootstrap';
+import ThemeToggler from './ThemeToggler';
+import { useContext } from 'react';
+import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const Header: React.FC = () => {
+  const { user, setUser } = useContext(UserContext);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    setUser(null);
+    navigate('/login');
+  };
+
   return (
-    <Navbar expand="lg" className="bg-body-tertiary" style={{ marginBottom: 50 }}>
+    <Navbar
+      expand="lg"
+      className="bg-body-tertiary"
+      style={{ marginBottom: 50 }}
+    >
       <Container>
         <Navbar.Brand href="/">Shop</Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -25,6 +37,17 @@ const Header: React.FC = () => {
                 Separated link
               </NavDropdown.Item>
             </NavDropdown>
+            {!user && <Nav.Link href="/login">Login</Nav.Link>}
+            {!user && <Nav.Link href="/register">Register</Nav.Link>}
+            {user && (
+              <>
+                <Navbar.Text>
+                  Signed in as: <a href="">{user.username}</a>
+                </Navbar.Text>
+                <Nav.Link onClick={handleLogout}>Sign Out</Nav.Link>{' '}
+                {/* Add sign out link */}
+              </>
+            )}
           </Nav>
           <ThemeToggler />
         </Navbar.Collapse>

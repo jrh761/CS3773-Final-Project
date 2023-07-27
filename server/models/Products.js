@@ -18,7 +18,7 @@ module.exports = (sequelize, DataTypes) => {
       },
     },
     {
-      freezeTableName: true, // Use model name as the table name
+      freezeTableName: true,
       timestamps: false, // Don't need createdAt, updatedAt fields
     }
   );
