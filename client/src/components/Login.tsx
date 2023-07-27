@@ -15,16 +15,16 @@ const Login: React.FC = () => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const result = await ApiService.post('/users/login', {
+    const response = await ApiService.post('/users/login', {
       username,
       password,
     });
 
-    if (result.success) {
-      setUser(result.data);
+    if (response.success) {
+      setUser(response.data);
       navigate('/');
     } else {
-      setError(result.message);
+      setError(response.message);
     }
   };
 

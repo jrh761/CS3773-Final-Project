@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
+import ApiService from '../utils/ApiService';
 
 type Props = {
   setProducts: (products: any) => any;
@@ -13,16 +14,11 @@ const PostProduct: React.FC<Props> = (props: Props) => {
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
-    const response = await fetch(`${process.env.REACT_APP_API_URL}/products`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({ productName, price: Number(price) }),
+    const response = await ApiService.post('/products', {
+      productName,
+      price: Number(price),
     });
-
-    const data = await response.json();
-    props.setProducts([...props.products, data]);
+    props.setProducts([...props.products, response.data]);
   };
 
   return (

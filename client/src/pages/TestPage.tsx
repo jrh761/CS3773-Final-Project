@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import PostProduct from '../components/PostProduct';
 import GetProducts from '../components/GetProducts';
 import { Col, Container, Row } from 'react-bootstrap';
+import ApiService from '../utils/ApiService';
 
 interface Product {
   productId: number;
@@ -14,9 +15,8 @@ const TestPage: React.FC = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const response = await fetch(`${process.env.REACT_APP_API_URL}/products`);
-      const data = await response.json();
-      setProducts(data);
+      const response = await ApiService.get('/products');
+      setProducts(response.data);
     };
 
     fetchProducts();

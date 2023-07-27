@@ -15,15 +15,15 @@ const Register: React.FC = () => {
     event.preventDefault();
     setError('');
 
-    const result = await ApiService.post('/users/register', {
+    const response = await ApiService.post('/users/register', {
       username,
       password,
     });
 
-    if (result.status === 409) {
+    if (response.status === 409) {
       setError('Username is already taken');
     } else {
-      setUser(result.data);
+      setUser(response.data);
       navigate('/');
     }
   };
