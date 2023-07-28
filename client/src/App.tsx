@@ -8,6 +8,7 @@ import AddProductsPage from './pages/AddProductsPage';
 import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import Header from './components/Header';
+import AddDiscountCodePage from './pages/AddDiscountCodePage';
 
 const App: React.FC = () => {
   return (
@@ -16,6 +17,7 @@ const App: React.FC = () => {
       <Container>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/add-discount-code" element={<AddDiscountCodePage />} />
           <Route path="/add-product" element={<AddProductsPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
