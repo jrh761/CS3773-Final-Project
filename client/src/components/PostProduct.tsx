@@ -18,9 +18,6 @@ const PostProduct: React.FC<Props> = (props: Props) => {
   const [price, setPrice] = useState<number | ''>('');
   const [photo, setPhoto] = useState<File | null>(null);
   const [submitted, setSubmitted] = useState(false);
-  const [showSuccessToast, setShowSuccessToast] = useState(false);
-  const [showErrorToast, setShowErrorToast] = useState(false);
-  const [toastMessage, setToastMessage] = useState('');
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
