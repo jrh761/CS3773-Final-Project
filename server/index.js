@@ -5,6 +5,7 @@ const cors = require("cors");
 // Routes
 const productRoutes = require("./routes/products");
 const userRoutes = require("./routes/users");
+const discountCode = require("./routes/discount-code");
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.use(express.json());
 // Add routes
 app.use("/api/products", productRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/discount-code", discountCode)
 
 // sync the database
 sequelize.sync().then(() => {
