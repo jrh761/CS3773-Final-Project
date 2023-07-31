@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Form, Button } from 'react-bootstrap';
-import ApiService from '../utils/ApiService';
-import { Product } from '../types';
+import ApiService from '../../utils/ApiService';
+import { Product } from '../../types';
 
 type Props = {
   setProducts: (products: any) => any;
@@ -10,7 +10,7 @@ type Props = {
   showToastError: (message: string) => void;
 };
 
-const PostProduct: React.FC<Props> = (props: Props) => {
+const ProductCreateForm: React.FC<Props> = (props: Props) => {
   const [productName, setProductName] = useState('');
   const [description, setDescription] = useState('');
   const [quantity, setQuantity] = useState<number | ''>('');
@@ -143,4 +143,4 @@ const PostProduct: React.FC<Props> = (props: Props) => {
   );
 };
 
-export default PostProduct;
+export default ProductCreateForm;

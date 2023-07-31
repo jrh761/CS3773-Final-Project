@@ -20,7 +20,6 @@ class ApiService {
           status: response.status,
         };
       }
-
       return {
         success: true,
         message: 'Request successful',

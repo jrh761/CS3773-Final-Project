@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import { Table, Modal } from 'react-bootstrap';
-import { Product } from '../types';
+import { Product } from '../../types';
 import { Buffer } from 'buffer';
 
 type Props = {
   products: Product[];
 };
 
-const GetProducts: React.FC<Props> = (props: Props) => {
+const ProductTableCreate: React.FC<Props> = (props: Props) => {
   const [modalShow, setModalShow] = useState(false);
   const [selectedImage, setSelectedImage] = useState('');
 
@@ -21,7 +21,7 @@ const GetProducts: React.FC<Props> = (props: Props) => {
       <Table striped bordered hover>
         <thead>
           <tr>
-            <th>#</th>
+            <th>Id</th>
             <th>Product Name</th>
             <th>Description</th>
             <th>Quantity</th>
@@ -91,4 +91,4 @@ const GetProducts: React.FC<Props> = (props: Props) => {
   );
 };
 
-export default GetProducts;
+export default ProductTableCreate;
