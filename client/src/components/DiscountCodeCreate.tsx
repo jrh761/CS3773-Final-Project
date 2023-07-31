@@ -1,8 +1,12 @@
 import { useState } from 'react';
 import { Button, Form } from 'react-bootstrap';
 import ApiService from '../utils/ApiService';
+import { DiscountCode } from '../types';
 
-type Props = {};
+type Props = {
+  setDiscount: (discounts: any) => any;
+  discounts: DiscountCode[];
+};
 
 const DiscountCodeCreate: React.FC<Props> = (props: Props) => {
   const [dollarAmount, setDollarAmount] = useState<number | ''>('');
@@ -18,6 +22,9 @@ const DiscountCodeCreate: React.FC<Props> = (props: Props) => {
       };
 
       const res = await ApiService.post('/discount-code', postData, false);
+      props.setDiscount([...props.discounts, res.data]);
+      setDollarAmount('');
+      setDiscountCode('');
     } catch (err) {
       console.error(err);
     }
@@ -46,7 +53,7 @@ const DiscountCodeCreate: React.FC<Props> = (props: Props) => {
         />
       </Form.Group>
 
-      <Button variant="primary" type="submit">
+      <Button className="my-3" variant="primary" type="submit">
         Submit
       </Button>
     </Form>

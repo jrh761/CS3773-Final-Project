@@ -18,3 +18,8 @@ export type Product = {
     };
     price: number;
   }
+
+  export type DiscountCode = {
+    dollarAmount: number;
+    code: string;
+  }

@@ -66,6 +66,9 @@ const Header: React.FC = () => {
                 <NavDropdown.Item href="/add-product">
                   Add product
                 </NavDropdown.Item>
+                <NavDropdown.Item href="/add-discount-code">
+                  Add discount
+                </NavDropdown.Item>
                 <NavDropdown.Divider />
                 <NavDropdown.Item onClick={handleLogout}>
                   Sign Out
