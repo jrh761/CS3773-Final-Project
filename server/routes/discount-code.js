@@ -25,7 +25,6 @@ router.get("/", async (req, res) => {
 // });
 
 router.post("/", async (req, res) => {
-  console.log("BODY", res.body);
   try {
     const existingCode = await DiscountCode.findOne({
         where: {

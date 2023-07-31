@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import PostProduct from '../components/PostProduct';
-import GetProducts from '../components/GetProducts';
+import ProductCreateForm from '../components/admin/ProductCreateForm';
+import ProductTableCreate from '../components/admin/ProductTableCreate';
 import { Col, Container, Row, Toast } from 'react-bootstrap';
 import ApiService from '../utils/ApiService';
 import { Product } from '../types';
@@ -26,7 +26,7 @@ const AddProductsPage: React.FC = () => {
       <Container>
         <Row>
           <Col className="col-lg-3">
-            <PostProduct
+            <ProductCreateForm
               setProducts={setProducts}
               products={products}
               showToastSuccess={(message: string) => {
@@ -40,7 +40,7 @@ const AddProductsPage: React.FC = () => {
             />
           </Col>
           <Col className="col-lg-9">
-            <GetProducts products={products} />
+            <ProductTableCreate products={products} />
           </Col>
         </Row>
       </Container>

@@ -1,9 +1,15 @@
 
 import { Buffer } from 'buffer';
 
+export type DiscountCode = {
+    id: number;
+    code: string;
+    dollarAmount: number;
+}
+
 export type User = {
-    username: string;
     id: string;
+    username: string;
 }
 
 export type Product = {
