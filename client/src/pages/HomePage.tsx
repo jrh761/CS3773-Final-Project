@@ -3,19 +3,17 @@ import {
   Container,
   Row,
   Col,
-  Card,
-  Button,
   FormControl,
   InputGroup,
   Dropdown,
   DropdownButton,
 } from 'react-bootstrap';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import ApiService from '../utils/ApiService';
 import { Product } from '../types';
-import { Buffer } from 'buffer';
 import Fuse from 'fuse.js';
 import { UserContext } from '../context/UserContext';
+import ProductListItem from '../components/ProductListItem';
 
 enum SortOption {
   PriceAsc = 'Price - Low to High',
@@ -29,7 +27,7 @@ const HomePage: React.FC = () => {
   const [displayProducts, setDisplayProducts] = useState<Product[] | null>([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [sortOption, setSortOption] = useState<SortOption>(SortOption.PriceAsc);
-  const { user, setUser } = useContext(UserContext);
+  const { user, setUser, fetchCartItems } = useContext(UserContext);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -86,10 +84,9 @@ const HomePage: React.FC = () => {
     });
 
     if (response.success) {
-      // We assume the Cart is a parent or sibling of HomePage, and that it will update on its own
-      // Alternatively, you could provide a callback to update a cart icon, number of items, etc.
+      fetchCartItems(user.id);
     } else {
-      // handle error
+      console.error(response.message);
     }
   };
 
@@ -132,60 +129,19 @@ const HomePage: React.FC = () => {
         </Row>
         <Row>
           {displayProducts.length > 0 ? (
-            displayProducts.map((product) => {
-              const image =
-                product.photo &&
-                product.photo.data &&
-                `data:${product.photo.type};base64,${Buffer.from(
-                  product.photo.data,
-                ).toString('base64')}`;
-
-              const imageUrl = image || '/placeholder.png';
-
-              return (
-                <Col
-                  sm={6}
-                  md={4}
-                  lg={3}
-                  key={product.productId}
-                  className="mb-4"
-                >
-                  <Link
-                    to={`/product/${product.productId}`}
-                    style={{ textDecoration: 'none', color: 'inherit' }}
-                  >
-                    <Card style={{ height: '400px' }}>
-                      <Card.Img
-                        variant="top"
-                        src={imageUrl}
-                        style={{ height: '200px', objectFit: 'cover' }}
-                      />
-                      <Card.Body>
-                        <Card.Title className="text-truncate">
-                          {product.productName}
-                        </Card.Title>
-                        <Card.Text className="text-truncate">
-                          {product.description}
-                        </Card.Text>
-                        <Card.Text>${product.price}</Card.Text>
-                        <Button
-                          variant="primary"
-                          size="sm"
-                          onClick={(event) => {
-                            event.preventDefault();
-                            addToCart(product.productId);
-                          }}
-                        >
-                          Add to Cart
-                        </Button>
-                      </Card.Body>
-                    </Card>
-                  </Link>
-                </Col>
-              );
-            })
+            displayProducts.map((product) => (
+              <Col
+                sm={6}
+                md={4}
+                lg={3}
+                key={product.productId}
+                className="mb-4"
+              >
+                <ProductListItem product={product} addToCart={addToCart} />
+              </Col>
+            ))
           ) : (
-            <p>No matching products</p>
+            <p>No products found</p>
           )}
         </Row>
       </Container>

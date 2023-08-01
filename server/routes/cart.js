@@ -34,8 +34,8 @@ router.post('/add', async (req, res) => {
     });
 
     if (cartItem) {
-      // If the item is already in the cart, update the quantity
-      cartItem.quantity = quantity;
+      // If the item is already in the cart, increment the quantity
+      cartItem.quantity += quantity;
       await cartItem.save();
     } else {
       // If the item is not in the cart, add it
@@ -76,7 +76,7 @@ router.put('/update', async (req, res) => {
 });
 
 router.delete('/remove-item', async (req, res) => {
-  const { userId, productId } = req.body;
+  const { userId, productId } = req.query;
 
   try {
     const cartItem = await CartItem.findOne({
