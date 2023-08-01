@@ -1,8 +1,8 @@
-const express = require("express");
-const { DiscountCode } = require("../models");
+const express = require('express');
+const { DiscountCode } = require('../models');
 const router = express.Router();
 
-router.get("/", async (req, res) => {
+router.get('/', async (req, res) => {
   try {
     const discountCode = await DiscountCode.findAll();
     res.json(discountCode);
@@ -24,22 +24,22 @@ router.get("/", async (req, res) => {
 //   }
 // });
 
-router.post("/", async (req, res) => {
+router.post('/', async (req, res) => {
   try {
     const existingCode = await DiscountCode.findOne({
-        where: {
-            code: req.body.code
-        }
-    })
+      where: {
+        code: req.body.code,
+      },
+    });
 
     if (existingCode) {
-        res.status(409).json({error: "Discount code already exists."})
+      res.status(409).json({ error: 'Discount code already exists.' });
     } else {
-        const discountCode = await DiscountCode.create({
-            dollarAmount: req.body.dollarAmount,
-            code: req.body.code
-        });
-        res.status(201).json(discountCode);
+      const discountCode = await DiscountCode.create({
+        dollarAmount: req.body.dollarAmount,
+        code: req.body.code,
+      });
+      res.status(201).json(discountCode);
     }
   } catch (err) {
     console.log(err);

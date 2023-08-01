@@ -40,6 +40,8 @@ const ProductTableCreate: React.FC<Props> = (props: Props) => {
                   product.photo.data,
                 ).toString('base64')}`;
 
+              const imageUrl = image || '/placeholder.png';
+
               return (
                 <tr key={product.productId}>
                   <td>{product.productId}</td>
@@ -50,14 +52,14 @@ const ProductTableCreate: React.FC<Props> = (props: Props) => {
                   <td>
                     {product.photo && product.photo.data ? (
                       <img
-                        src={image}
+                        src={imageUrl}
                         alt={product.productName}
                         style={{
                           maxHeight: '50px',
                           width: 'auto',
                           cursor: 'pointer',
                         }}
-                        onClick={() => handleImageClick(image)}
+                        onClick={() => handleImageClick(imageUrl)}
                       />
                     ) : (
                       <span>No image</span>

@@ -9,6 +9,7 @@ import RegisterPage from './pages/RegisterPage';
 import LoginPage from './pages/LoginPage';
 import Header from './components/Header';
 import AddDiscountCodePage from './pages/AddDiscountCodePage';
+import ProductDetailsPage from './pages/ProductDetailsPage';
 
 const App: React.FC = () => {
   return (
@@ -19,6 +20,7 @@ const App: React.FC = () => {
           <Route path="/" element={<Home />} />
           <Route path="/add-discount-code" element={<AddDiscountCodePage />} />
           <Route path="/add-product" element={<AddProductsPage />} />
+          <Route path="/product/:productId" element={<ProductDetailsPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/login" element={<LoginPage />} />
         </Routes>

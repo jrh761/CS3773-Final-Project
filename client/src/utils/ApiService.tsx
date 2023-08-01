@@ -70,6 +70,75 @@ class ApiService {
       };
     }
   }
+
+  static async put(path: string, data: any) {
+    try {
+      const response = await fetch(this.API_BASE_URL + path, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        return {
+          success: false,
+          message: responseData.error || 'An error occurred',
+          data: null,
+          status: response.status,
+        };
+      }
+
+      return {
+        success: true,
+        message: 'Request successful',
+        data: responseData,
+        status: response.status,
+      };
+    } catch (error: any) {
+      return {
+        success: false,
+        message: error.message,
+        data: null,
+        status: 0,
+      };
+    }
+  }
+
+  static async delete(path: string) {
+    try {
+      const response = await fetch(this.API_BASE_URL + path, {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      const responseData = await response.json();
+
+      if (!response.ok) {
+        return {
+          success: false,
+          message: responseData.error || 'An error occurred',
+          data: null,
+          status: response.status,
+        };
+      }
+
+      return {
+        success: true,
+        message: 'Request successful',
+        data: responseData,
+        status: response.status,
+      };
+    } catch (error: any) {
+      return {
+        success: false,
+        message: error.message,
+        data: null,
+        status: 0,
+      };
+    }
+  }
 }
 
 export default ApiService;

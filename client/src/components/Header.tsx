@@ -3,6 +3,7 @@ import ThemeToggler from './ThemeToggler';
 import { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../context/UserContext';
 import { useNavigate } from 'react-router-dom';
+import Cart from './Cart';
 
 const Header: React.FC = () => {
   const { user, setUser } = useContext(UserContext);
@@ -59,7 +60,7 @@ const Header: React.FC = () => {
           </Nav>
           {user && (
             <Nav>
-              <Navbar.Text className="px-3">
+              <Navbar.Text>
                 User: <strong>{user.username}</strong>
               </Navbar.Text>
               <NavDropdown title="Settings" id="basic-nav-dropdown">
@@ -79,6 +80,7 @@ const Header: React.FC = () => {
               </NavDropdown>
             </Nav>
           )}
+          {user && <Cart userId={user ? user.id : null} />}
         </Navbar.Collapse>
       </Container>
     </Navbar>

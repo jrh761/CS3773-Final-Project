@@ -2,7 +2,7 @@ const { DataTypes } = require('sequelize');
 
 module.exports = (sequelize) => {
   const Product = sequelize.define(
-    "Product",
+    'Product',
     {
       productId: {
         type: DataTypes.INTEGER,
@@ -38,8 +38,19 @@ module.exports = (sequelize) => {
     {
       freezeTableName: true,
       timestamps: false, // Don't need createdAt, updatedAt fields
-    }
+      underscored: false,
+    },
   );
+
+  Product.associate = (models) => {
+    Product.hasMany(models.CartItem, {
+      foreignKey: {
+        name: 'productId',
+        field: 'productId',
+      },
+      as: 'cartItems',
+    });
+  };
 
   return Product;
 };
