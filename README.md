@@ -1,7 +1,7 @@
 # CS3773-Final-Project
 
 # Live site
-(Open Shop App)[http://52.90.194.118/]
+[Open Shop App](http://52.90.194.118/)
 
 ## Setup
 
