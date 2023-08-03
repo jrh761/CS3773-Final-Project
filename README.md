@@ -29,7 +29,7 @@
   title="State Diagram"
   style="display: inline-block; margin: 0 auto; max-width: 800px">
 
-### [User Stories](deliverables\CS3773-Project-User-Stories.pdf)
+### [User Stories](deliverables/CS3773-Project-User-Stories.pdf)
   
 
 
