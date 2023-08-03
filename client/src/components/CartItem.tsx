@@ -58,7 +58,7 @@ const CartItem: React.FC<CartItemProps> = ({
 
   return (
     <Row
-      className="align-items-center mb-3 bg-light px-1 py-3 mx-1"
+      className="align-items-center mb-3 px-1 py-3 mx-1"
       style={{
         border: '1px solid #e0e0e0',
         borderRadius: '10px',
@@ -68,7 +68,12 @@ const CartItem: React.FC<CartItemProps> = ({
       }}
     >
       <Col xs={3}>
-        <Image src={imageUrl} alt={product.productName} thumbnail />
+        <Image
+          src={imageUrl}
+          alt={product.productName}
+          thumbnail
+          style={{ height: '50px', width: '50px', objectFit: 'cover' }}
+        />
       </Col>
       <Col xs={9}>
         <Row>

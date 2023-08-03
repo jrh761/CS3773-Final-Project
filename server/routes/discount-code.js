@@ -11,18 +11,24 @@ router.get('/', async (req, res) => {
   }
 });
 
-// router.get("/:code", async (req, res) => {
-//   try {
-//     const discountCode = await DiscountCode.findOne(req.param.code);
-//     if (discountCode) {
-//       res.json(discountCode);
-//     } else {
-//       res.status(404).json({ error: "Discount Code not found" });
-//     }
-//   } catch (err) {
-//     res.status(500).json({ error: err.message });
-//   }
-// });
+router.get('/:discountCode', async (req, res) => {
+  try {
+    const discountCode = await DiscountCode.findOne({
+      where: {
+        code: req.params.discountCode,
+      },
+    });
+
+    if (discountCode) {
+      res.status(200).json(discountCode);
+    } else {
+      res.status(404).json({ error: 'Discount code does not exist.' });
+    }
+  } catch (err) {
+    console.log(err);
+    res.status(500).json({ error: err.message });
+  }
+});
 
 router.post('/', async (req, res) => {
   try {

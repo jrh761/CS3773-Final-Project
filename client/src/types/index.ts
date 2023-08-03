@@ -31,3 +31,8 @@ export type CartItem = {
   quantity: number;
   product: Product;
 };
+
+export type Discount = {
+  dollarAmount: number;
+  code: string;
+};

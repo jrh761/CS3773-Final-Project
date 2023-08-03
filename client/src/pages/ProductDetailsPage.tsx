@@ -4,10 +4,35 @@ import { Container, Row, Col, Card, Button } from 'react-bootstrap';
 import ApiService from '../utils/ApiService';
 import { Product } from '../types';
 import { Buffer } from 'buffer';
+import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 const ProductDetailsPage: React.FC = () => {
   const [product, setProduct] = useState<Product | null>(null);
   const { productId } = useParams();
+  const { user, fetchCartItems, setCartItemsCount } =
+    React.useContext(UserContext);
+
+  const navigate = useNavigate();
+
+  const addToCart = async () => {
+    if (!user) {
+      navigate('/login');
+      return;
+    }
+
+    const response = await ApiService.post('/cart/add', {
+      userId: user.id,
+      productId: product?.productId,
+      quantity: 1,
+    });
+
+    if (response.success) {
+      fetchCartItems(user.id);
+    } else {
+      console.error(response.message);
+    }
+  };
 
   useEffect(() => {
     const fetchProduct = async () => {
@@ -47,12 +72,7 @@ const ProductDetailsPage: React.FC = () => {
               <Card.Title>{product.productName}</Card.Title>
               <Card.Text>{product.description}</Card.Text>
               <Card.Text>${product.price}</Card.Text>
-              <Button
-                variant="primary"
-                onClick={() => {
-                  // Add cart function
-                }}
-              >
+              <Button variant="primary" onClick={addToCart}>
                 Add to Cart
               </Button>
             </Card.Body>

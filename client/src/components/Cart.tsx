@@ -4,6 +4,7 @@ import ApiService from '../utils/ApiService';
 import CartItemComponent from './CartItem';
 import { CartItem as CartItemType } from '../types';
 import { UserContext } from '../context/UserContext';
+import { useNavigate } from 'react-router-dom';
 
 type CartProps = {
   userId: number | null;
@@ -12,6 +13,7 @@ type CartProps = {
 const Cart: React.FC<CartProps> = ({ userId }) => {
   const [show, setShow] = useState(false);
   const [cartItems, setCartItems] = useState<CartItemType[]>([]);
+  const navigate = useNavigate();
 
   const { setCartItemsCount } = useContext(UserContext);
 
@@ -19,6 +21,11 @@ const Cart: React.FC<CartProps> = ({ userId }) => {
   const handleShow = async () => {
     setShow(true);
     await fetchCartItems();
+  };
+
+  const handleCheckout = () => {
+    handleClose();
+    navigate('/checkout');
   };
 
   const fetchCartItems = async () => {
@@ -93,14 +100,19 @@ const Cart: React.FC<CartProps> = ({ userId }) => {
         </Offcanvas.Header>
         <Offcanvas.Body>
           {cartItems.length ? (
-            cartItems.map((item) => (
-              <CartItemComponent
-                key={item.product.productId}
-                cartItem={item}
-                onUpdateQuantity={handleUpdateQuantity}
-                onRemoveItem={handleRemoveItem}
-              />
-            ))
+            <div>
+              {cartItems.map((item) => (
+                <CartItemComponent
+                  key={item.product.productId}
+                  cartItem={item}
+                  onUpdateQuantity={handleUpdateQuantity}
+                  onRemoveItem={handleRemoveItem}
+                />
+              ))}
+              <Button variant="primary" onClick={handleCheckout}>
+                Proceed to Checkout
+              </Button>
+            </div>
           ) : (
             <div style={{ textAlign: 'center', marginTop: '20px' }}>
               Cart is empty

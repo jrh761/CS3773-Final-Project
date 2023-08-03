@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { UserContext } from '../context/UserContext';
 import { User } from '../types';
-import ApiService from '../utils/ApiService'; // import ApiService to fetch cart items
+import ApiService from '../utils/ApiService';
 
 export const UserProvider: React.FC<React.PropsWithChildren<{}>> = ({
   children,
