@@ -3,6 +3,40 @@
 # Live site
 [Open Shop App](http://52.90.194.118/)
 
+# Demo Presentation
+[Demo Presentation](https://drive.google.com/file/d/1X5e-L3-iG-815IgiZN8eTx7xFJw9wKkm/view?usp=drivesdk)
+
+# Deliverables
+
+### Uml Diagram
+<img
+  src="deliverables\CS3773_ProjectUML.jpg"
+  alt="Alt text"
+  title="UML Diagram"
+  style="display: inline-block; margin: 0 auto; max-width: 500px">
+
+### Sequence Diagram
+<img
+  src="deliverables\sequence-diagram.png"
+  alt="Alt text"
+  title="Sequence Diagram"
+  style="display: inline-block; margin: 0 auto; max-width: 500px">
+
+### State Diagram
+<img
+  src="deliverables\swestatdiagram.png"
+  alt="Alt text"
+  title="State Diagram"
+  style="display: inline-block; margin: 0 auto; max-width: 800px">
+
+### [User Stories](deliverables\CS3773-Project-User-Stories.pdf)
+  
+
+
+
+
+
+
 ## Setup
 
 ### Windows
