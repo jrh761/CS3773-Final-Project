@@ -30,12 +30,8 @@
   style="display: inline-block; margin: 0 auto; max-width: 800px">
 
 ### [User Stories](deliverables/CS3773-Project-User-Stories.pdf)
-  
 
-
-
-
-
+### [Workload Distribution](deliverables/Workload-Distribution%20Report.pdf)
 
 ## Setup
 
